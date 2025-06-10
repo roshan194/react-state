@@ -8,6 +8,7 @@ const App = () => {
     <div>
       <h1>Assignments</h1>
       <Problem1 />
+      <Problem2 />
     </div>
     </>
   )
@@ -40,6 +41,25 @@ const Problem1 = () => {
       </div>
     </>
   )
+}
+
+
+const Problem2 = () =>{
+  const[isVisible, setisVisble] = useState(true);
+  function handleToggle(){
+    setisVisble(!isVisible);
+  }
+  return(
+    <>
+      <div>
+        <button onClick={handleToggle}>toggle message</button>
+        {isVisible && (
+          <p>Hello React!</p>
+        )}
+      </div>
+    </>
+  )
+
 }
 
 
