@@ -3,32 +3,44 @@ import { useState } from "react";
 import "./App.css"
 
 const App = () => {
-  const[count, setCount] = useState(0);
-  function handle() {
-    setCount(count+1);
-  }
-  function clear(){
-    setCount(0);
-  }
   return(
     <>
     <div>
-      <h1>Counters that update together</h1>
-      <Mybutton count = {count} onClick = {handle} />
-      <Mybutton count = {count} onClick = {handle} />
+      <h1>Assignments</h1>
+      <Problem1 />
     </div>
-    <button onClick={clear}>clear</button>
     </>
   )
 }
 
-const Mybutton = ({count, onClick}) => {
+const Problem1 = () => {
+  const[count, setCount] = useState(0);
+  function increment(){
+    setCount(count + 1);
+  }
+  function decrement(){
+    if(count > 0){
+      setCount(count - 1);
+    }
+  }
+
+  function reset(){
+    setCount(0);
+  }
+
+
 
   return(
-    <div>
-      <button onClick={onClick}>You have Clicked {count} times</button>
-    </div>
+    <>
+      <div>
+      <p>Count: {count}</p>
+        <button onClick={increment}>increment</button>
+        <button onClick={decrement}>decrement</button>
+        <button onClick={reset}>reset</button>
+      </div>
+    </>
   )
 }
+
 
 export default App;
