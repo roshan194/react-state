@@ -9,6 +9,7 @@ const App = () => {
       <h1>Assignments</h1>
       <Problem1 />
       <Problem2 />
+      <Problem3 />
     </div>
     </>
   )
@@ -60,6 +61,31 @@ const Problem2 = () =>{
     </>
   )
 
+}
+
+const Problem3 = () =>{
+  const[inputValue, setinputValue] = useState('');
+  function handleInputChange(e){
+    setinputValue(e.target.value);
+  }
+
+  function clearInput(){
+    setinputValue("");
+  }
+  return(
+    <>
+      <div>
+        <h1>Controlled Input</h1>
+        <input
+        type="text"
+        value={inputValue}
+        onChange={handleInputChange}
+        placeholder="Enter Text..." />
+        <p>Typed text: {inputValue}</p>
+        <button onClick={clearInput}>clear</button>
+      </div>
+    </>
+  )
 }
 
 
