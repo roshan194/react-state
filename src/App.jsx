@@ -1,92 +1,32 @@
-import React from "react";
-import { useState } from "react";
-import "./App.css"
+import React, { useState } from "react";
 
 const App = () => {
-  return(
-    <>
-    <div>
-      <h1>Assignments</h1>
-      <Problem1 />
-      <Problem2 />
-      <Problem3 />
-    </div>
-    </>
-  )
-}
+  const [isToggle, setIsToggle] = useState(false);
+  const [count, setCount] = useState(0);
 
-const Problem1 = () => {
-  const[count, setCount] = useState(0);
-  function increment(){
-    setCount(count + 1);
-  }
-  function decrement(){
-    if(count > 0){
-      setCount(count - 1);
+  function handleClick() {
+    // Only increment count when changing from false ➝ true (unliked ➝ liked)
+    if (!isToggle) {
+      setCount(count + 1);
     }
+    setIsToggle(!isToggle);
   }
 
-  function reset(){
-    setCount(0);
-  }
-
-
-
-  return(
+  return (
     <>
-      <div>
-      <p>Count: {count}</p>
-        <button onClick={increment}>increment</button>
-        <button onClick={decrement}>decrement</button>
-        <button onClick={reset}>reset</button>
-      </div>
+      <button onClick={handleClick}>
+        {isToggle ? "❤️ Liked" : "👍 Like"}
+      </button>
+
+      <p>
+        {isToggle
+          ? "You liked this post"
+          : "You have not liked this post"}
+      </p>
+
+      <p>You liked this post {count} {count === 1 ? "time" : "times"}</p>
     </>
-  )
-}
-
-
-const Problem2 = () =>{
-  const[isVisible, setisVisble] = useState(true);
-  function handleToggle(){
-    setisVisble(!isVisible);
-  }
-  return(
-    <>
-      <div>
-        <button onClick={handleToggle}>toggle message</button>
-        {isVisible && (
-          <p>Hello React!</p>
-        )}
-      </div>
-    </>
-  )
-
-}
-
-const Problem3 = () =>{
-  const[inputValue, setinputValue] = useState('');
-  function handleInputChange(e){
-    setinputValue(e.target.value);
-  }
-
-  function clearInput(){
-    setinputValue("");
-  }
-  return(
-    <>
-      <div>
-        <h1>Controlled Input</h1>
-        <input
-        type="text"
-        value={inputValue}
-        onChange={handleInputChange}
-        placeholder="Enter Text..." />
-        <p>Typed text: {inputValue}</p>
-        <button onClick={clearInput}>clear</button>
-      </div>
-    </>
-  )
-}
-
+  );
+};
 
 export default App;
